@@ -1,0 +1,100 @@
+import 'package:demo/pages/food_pages/food_details.dart';
+import 'package:demo/widgets/favorite_card.dart';
+import 'package:demo/widgets/food_menu_item.dart';
+import 'package:demo/widgets/order_food_card.dart';
+import 'package:flutter/material.dart';
+
+class Favorite extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back_ios,color: Colors.orange,),
+          onPressed: (){
+            Navigator.pop(context);
+          },
+        ),
+        elevation: 0.0,
+        backgroundColor: Colors.white,
+        title: Text('Favorite',
+          style: TextStyle(
+              color: Colors.orange,
+              fontSize: 25,
+              fontWeight: FontWeight.bold
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height*0.8,
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+              ),
+              itemCount: 4,
+              itemBuilder: (context,index){
+                return  FavoriteCard(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => FoodDetails()),
+
+                    );
+                  },
+                  category: 'Pizza',
+                  foodName: 'Cheese pizza',
+                  rating: '4.8',
+                  imagePath: 'images/pizza.jpg',
+                );
+              },
+            ),
+          ),
+
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       Text('Total :',
+          //         style :TextStyle(
+          //             fontSize: 20,
+          //             color: Colors.orange,
+          //             fontWeight: FontWeight.bold
+          //         ),
+          //       ),
+          //       Text('250 DA',
+          //         style: TextStyle(
+          //             fontSize: 20,
+          //             color: Colors.green,
+          //             fontWeight: FontWeight.bold
+          //         ),
+          //       ),
+          //       MaterialButton(
+          //           color: Colors.orange,
+          //           shape: RoundedRectangleBorder(
+          //               borderRadius: BorderRadius.circular(10)
+          //           ),
+          //           height: MediaQuery.of(context).size.height*0.06,
+          //           minWidth: MediaQuery.of(context).size.width*0.4,
+          //           child: Text('Add To Cart',
+          //             style: TextStyle(
+          //                 color: Colors.white,
+          //                 fontSize: 20,
+          //                 fontWeight: FontWeight.bold
+          //             ),
+          //           ),
+          //           onPressed: (){
+          //
+          //           })
+          //     ],
+          //   ),
+          // )
+        ],
+      ),
+    );
+  }
+}
